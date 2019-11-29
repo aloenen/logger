@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Currently being worked on!</strong> Some things may have changed
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  <ul class="contacts">
+    <li *ngFor="let contact of contacts" (click)="onSelect(contact)" [class.selected]="contact === selectedContact">
+      <button class="delete-button" (click)="deleteContact(contact)">Delete</button>
+      <div class="contact-element">
+        <div class="badge">{{contact.uid}}</div>
+        <div class="name">{{contact.name}}</div>
+        <div class="description">{{contact.description}}</div>
+      </div>
+    </li>
+  </ul>
+  <div class="editarea">
+    <button (click)="enableAddMode()">Add New Contact</button>
+    <div *ngIf="selectedContact">
+      <div class="editfields">
+        <div>
+          <label>ID: </label>
+          <input [(ngModel)]="selectedContact.uid" placeholder="id" *ngIf="addingContact" />
+          <label *ngIf="!addingContact" class="value">{{selectedContact.uid}}</label>
+        </div>
+        <div>
+          <label>Name: </label>
+          <input [(ngModel)]="selectedContact.name" placeholder="name" />
+        </div>
+        <div>
+          <label>Description: </label>
+          <input [(ngModel)]="selectedContact.description" placeholder="description" />
+        </div>
+      </div>
+      <button (click)="cancel()">Cancel</button>
+      <button (click)="save()">Save</button>
+    </div>
+  </div>
+</div>
