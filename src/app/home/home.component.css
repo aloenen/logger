@@ -1,3 +1,22 @@
 a{
     margin-left: 5px;
 }
+
+.carousel {
+    width:640px;
+    height:360px;
+    margin-left: 400px;
+}
+
+.carousel-indicators,
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.carousel-item{
+    width: 400px;
+    height: 250px;
+    margin-left: 120px;
+    margin-top: 100px;
+}
