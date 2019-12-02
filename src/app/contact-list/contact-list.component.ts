@@ -51,7 +51,7 @@ export class ContactListComponent implements OnInit {
 
   save() {
     if (this.addingContact) {
-      this.contactService.addContact(this.selectedContact).subscribe(contact => {
+        this.contactService.addContact(this.selectedContact).subscribe(contact => {
         this.addingContact = false;
         this.selectedContact = null;
         this.contacts.push(contact);

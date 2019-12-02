@@ -7,6 +7,7 @@ const api = '/api';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ContactService {
   constructor(private http: HttpClient) {}
 

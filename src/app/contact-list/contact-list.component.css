@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-* {
-  font-family: Arial;
-}
+
 h2 {
   color: #444;
   font-weight: lighter;
@@ -13,8 +11,6 @@ body, input[text], button {
   color: #888;
 }
 button {
-  font-size: 14px;
-  font-family: Arial;
   background-color: #eee;
   border: none;
   padding: 5px 10px;
@@ -25,7 +21,7 @@ button {
 button:hover {
   background-color: #cfd8dc;
 }
-button.delete-button {
+.btn-danger {
   float: right;
   background-color: gray !important;
   background-color: #d83b01 !important;
@@ -34,15 +30,15 @@ button.delete-button {
   position: relative;
   font-size: 12px;
 }
-div {
+/*div {
   margin: 0.1em;
-}
+}*/
 .selected {
   background-color: #cfd8dc !important;
   background-color: #0078d7 !important;
   color: white;
 }
-.cpontacts {
+.contacts {
   float: left;
   margin: 0 0 2em 0;
   list-style-type: none;
@@ -115,30 +111,13 @@ label.value {
   margin-left: 10px;
   font-size: 14px;
 }
-input {
-  height: 2em;
-  font-size: 1em;
-  padding-left: 0.4em;
-}
-input::placeholder {
-  color: lightgray;
-  font-weight: normal;
-  font-size: 12px;
-  letter-spacing: 3px;
-}
+
 .editarea {
   float: left;
 }
-.editarea input {
-  margin: 4px;
-  height: 20px;
-  color: #0078d7;
-}
+
 .editarea button {
   margin: 8px;
-}
-.editarea .editfields {
-  margin-left: 12px;
 }
 
 .container{
