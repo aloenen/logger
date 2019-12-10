@@ -1,0 +1,22 @@
+.container{
+    margin-top: 65px;
+    margin-left: 10px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+canvas{
+    margin-right: 10px;
+}
+
+.card{
+    transition: card-shadow .3s;
+    display: inline-block;
+    margin: 10px;
+}
+
+.card:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}

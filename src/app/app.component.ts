@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   //TODO
-  title = 'checkIn';
+  title = 'Logger';
 }

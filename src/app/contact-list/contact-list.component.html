@@ -2,40 +2,88 @@
   <h1>Your Contacts</h1>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let contact of contacts" (click)="onSelect(contact)" [class.selected]="contact === selectedContact">
-      {{contact.uid}} | {{contact.name}} | {{contact.description}}
+      {{contact.uid}} | {{contact.name}} | {{contact.major}} | {{contact.grade}}
       <button class="btn btn-danger" (click)="deleteContact(contact)">Delete</button>
-      <!--<div class="contact-element">
-        <div class="badge">{{contact.uid}}</div>
-        <div class="name">{{contact.name}}</div>
-        <div class="description">{{contact.description}}</div>
-      </div>-->
+      <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>
     </li>
   </ul>
-  <div class="editarea">
-    <button class="btn btn-light" (click)="enableAddMode()">Add New Contact</button>
-    <div *ngIf="selectedContact">
-      <div class="editfields">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">ID:</span>
+  
+    <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()" margin-top="10px">Add New Contact</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a new Contact</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div *ngIf="selectedContact">
+                <div class="editfields">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">ID:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.uid" *ngIf="addingContact" type="text" class="form-control" placeholder="ID" aria-label="ID" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Name:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Description:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.description" type="text" class="form-control" placeholder="description" aria-label="description" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">High School:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.highschool" type="text" class="form-control" placeholder="High School" aria-label="High School" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Grade:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.grade" type="text" class="form-control" placeholder="Grade" aria-label="Grade" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Meetings Attended:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.meetings" type="text" class="form-control" placeholder="Meetings" aria-label="Meetings" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">City:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.city" type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">State:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.state" type="text" class="form-control" placeholder="State" aria-label="State" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Major:</span>
+                    </div>
+                    <input [(ngModel)]="selectedContact.major" type="text" class="form-control" placeholder="Major" aria-label="Major" aria-describedby="basic-addon1">
+                  </div>
+                </div> <!--End edit fields-->
+              </div> <!--End contact-->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="cancel()" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="save()" data-dismiss="modal">Save changes</button>
+            </div>
           </div>
-          <input [(ngModel)]="selectedContact.uid" *ngIf="addingContact" type="text" class="form-control" placeholder="ID" aria-label="ID" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Name:</span>
-          </div>
-          <input [(ngModel)]="selectedContact.name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Description:</span>
-          </div>
-          <input [(ngModel)]="selectedContact.description" type="text" class="form-control" placeholder="description" aria-label="description" aria-describedby="basic-addon1">
         </div>
       </div>
-      <button class="btn btn-light" (click)="cancel()">Cancel</button>
-      <button class="btn btn-light" (click)="save()">Save</button>
-    </div>
-  </div>
+  
 </div>

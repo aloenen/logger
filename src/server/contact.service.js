@@ -17,7 +17,9 @@ function getContacts(req, res) {
 }
 
 function postContact(req, res) {
-    const originalContact = { uid: req.body.uid, name: req.body.name, description: req.body.description };
+    const originalContact = { uid: req.body.uid, name: req.body.name, description: req.body.description, highschool: req.body.highschool, 
+                              grade: req.body.grade, meetings: req.body.meetings, hometown: req.body.hometown, state: req.body.state, 
+                              major: req.body.major };
     const contact = new Contact(originalContact);
     contact.save(error => {
       if (checkServerError(res, error)) return;
@@ -37,7 +39,13 @@ function putContact(req, res) {
   const originalContact = {
     uid: parseInt(req.params.uid, 10),
     name: req.body.name,
-    description: req.body.description
+    description: req.body.description,
+    highschool: req.body.highschool,
+    grade: req.body.grade,
+    meetings: parseInt(req.body.meetings, 10),
+    hometown: req.body.meetings,
+    state: req.body.state,
+    major: req.body.major
   };
   Contact.findOne({ uid: originalContact.uid }, (error, contact) => {
     if (checkServerError(res, error)) return;
@@ -45,6 +53,13 @@ function putContact(req, res) {
 
     contact.name = originalContact.name;
     contact.description = originalContact.description;
+    contact.highschool = originalContact.highschool;
+    contact.grade = originalContact.grade;
+    contact.meetings = originalContact.meetings;
+    contact.hometown = originalContact.hometown;
+    contact.state = originalContact.state;
+    contact.major = originalContact.major;
+
     contact.save(error => {
       if (checkServerError(res, error)) return;
       res.status(200).json(contact);
