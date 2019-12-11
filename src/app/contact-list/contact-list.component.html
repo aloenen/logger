@@ -1,14 +1,39 @@
 <div class="container">
   <h1>Your Contacts</h1>
-  <ul class="list-group">
+  <!--<ul class="list-group">
     <li class="list-group-item" *ngFor="let contact of contacts" (click)="onSelect(contact)" [class.selected]="contact === selectedContact">
       {{contact.uid}} | {{contact.name}} | {{contact.major}} | {{contact.grade}}
       <button class="btn btn-danger" (click)="deleteContact(contact)">Delete</button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>
     </li>
-  </ul>
+  </ul>-->
+  <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()" margin-bottom="10px">Add New Contact</button>
+  <button class="btn btn-light" (click)="populateContacts()">Add 50 Contacts</button>
   
-    <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()" margin-top="10px">Add New Contact</button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Major</th>
+        <th>Grade</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of (contacts | paginate: { itemsPerPage:10, currentPage: p})" (click)="onSelect(contact)" [class.selected]="contact === selectedContact">
+        <td> {{ contact.uid }}   </td>
+        <td> {{ contact.name }}  </td>
+        <td> {{ contact.major }} </td>
+        <td> {{ contact.grade }} </td>
+        <td><button class="btn btn-danger" (click)="deleteContact(contact)">Delete</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -47,9 +72,15 @@
                   </div>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">Grade:</span>
+                      <span class="input-group-text" id="basic-addon1" for="gradepicker">Grade:</span>
                     </div>
-                    <input [(ngModel)]="selectedContact.grade" type="text" class="form-control" placeholder="Grade" aria-label="Grade" aria-describedby="basic-addon1">
+                    <select class="custom-select" id="gradepicker" [(ngModel)]="selectedContact.grade">
+                      <option selected>Choose...</option>
+                      <option value="Freshman">Freshman</option>
+                      <option value="Sophomore">Sophomore</option>
+                      <option value="Junior">Junior</option>
+                      <option value="Senior">Senior</option>
+                    </select>
                   </div>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -61,7 +92,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">City:</span>
                     </div>
-                    <input [(ngModel)]="selectedContact.city" type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon1">
+                    <input [(ngModel)]="selectedContact.hometown" type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon1">
                   </div>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -71,9 +102,23 @@
                   </div>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">Major:</span>
+                      <span class="input-group-text" id="basic-addon1" for="majordd">Major:</span>
                     </div>
-                    <input [(ngModel)]="selectedContact.major" type="text" class="form-control" placeholder="Major" aria-label="Major" aria-describedby="basic-addon1">
+                    <select class="custom-select" id="majordd" [(ngModel)]="selectedContact.major">
+                      <option selected>Choose...</option>
+                      <option value="Freshman">Computer Science</option>
+                      <option value="Sophomore">Computer Engineering</option>
+                      <option value="Junior">Electrical Engineering</option>
+                      <option value="Senior">Chemical Engineering</option>
+                      <option value="">Mechanical Engineering</option>
+                      <option value="">Industrial Engineering</option>
+                      <option value="">Biosystems Engineering</option>
+                      <option value="">Environmental Engineering</option>
+                      <option value="">Civil Engineering</option>
+                      <option value="">Architectural Engineering</option>
+                      <option value="">Construction Science and Management</option>
+                      <option value="">General Engineering</option>
+                    </select>  
                   </div>
                 </div> <!--End edit fields-->
               </div> <!--End contact-->

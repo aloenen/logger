@@ -15,6 +15,8 @@ canvas{
     transition: card-shadow .3s;
     display: inline-block;
     margin: 10px;
+    width: 30rem;
+    height: 30rem;
 }
 
 .card:hover{

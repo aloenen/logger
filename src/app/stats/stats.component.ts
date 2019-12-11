@@ -11,33 +11,28 @@ import { Contact } from '../contact';
 })
 export class StatsComponent implements OnInit {
 
-  chart = [];
+  //API Variables
   contacts: any = [];
-  meetingCounts: any = [];
+
+  //Chart Variables
+  chart = [];
+  gradeChart = [];
   attendanceChart = [];
   hsChart = [];
+  majorChart = [];
+  stateChart = [];
+
+  //Counts for Charts
+  meetingCounts: any = [];
   highSchoolCounts = [];
+  gradeCounts = [];
+  majorCounts = [];
+  stateCounts = [];
+
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
     this.getContacts();
-    this.chart = new Chart('canvas', {
-      type: 'line',
-      data: { labels: "weatherDates",
-        datasets: [
-          { data: [3,3,3,3,3,3,3,4], borderColor: "#3cba9f", fill: false},
-          { data: [2,3,4,5,5,6,7,7], borderColor: "#ffcc00", fill: false},
-        ]
-      },
-      options: { legend: { display: false },
-        scales: {
-          xAxes: [{ display: true }],
-          yAxes: [{ display: true}],
-        }
-      }
-    });
-
-    
 
   }
   
@@ -55,6 +50,39 @@ export class StatsComponent implements OnInit {
     let highschools = this.contacts.map((x: Contact) => x.highschool);
     this.highSchoolCounts = [];
 
+    let grades = this.contacts.map((x: Contact) => x.grade);
+    this.gradeCounts = [];
+
+    let majors = this.contacts.map((x: Contact) => x.major);
+    this.majorCounts = [];
+
+    let states = this.contacts.map((x: Contact) => x.state);
+    this.stateCounts = [];
+
+    for(let s of states){
+      if(s in this.stateCounts){
+        this.stateCounts[s] += 1;
+      } else {
+        this.stateCounts[s] = 1;
+      }
+    }
+
+    for(let m of majors){
+      if(m in this.majorCounts){
+        this.majorCounts[m] += 1;
+      } else {
+        this.majorCounts[m] = 1;
+      }
+    }
+
+    for(let g of grades){
+      if(g in this.gradeCounts){
+        this.gradeCounts[g] += 1;
+      } else {
+        this.gradeCounts[g] = 1;
+      }
+    }
+
     for(let h of highschools){
       if(h in this.highSchoolCounts){
         this.highSchoolCounts[h] += 1;
@@ -64,6 +92,7 @@ export class StatsComponent implements OnInit {
       }
       console.log(h, this.highSchoolCounts[h]);
     }
+
     for (let meeting of meetings) {
 
       if(meeting <= 6){
@@ -89,7 +118,29 @@ export class StatsComponent implements OnInit {
     this.hsChart = new Chart('canvas3',{
       type: 'bar',
       data: {datasets:[{data: Object.entries(this.highSchoolCounts).map(x => x[1]) }],
-             labels: Object.entries(this.highSchoolCounts).map(x => x[0]) },
+             labels: Object.entries(this.highSchoolCounts).map(x => x[0])},
+      options: {legend: {display: true},
+                scales: {yAxes:[{ticks:{beginAtZero: true}}]}}
+    })
+
+    this.gradeChart = new Chart('gradeCanvas', {
+      type: 'doughnut',
+      data: {datasets:[{data: Object.entries(this.gradeCounts).map(x => x[1]) }],
+             labels: Object.entries(this.gradeCounts).map(x => x[0]) },
+      options: {legend: {display: true}}
+    })
+
+    this.majorChart = new Chart('majorCanvas', {
+      type: 'polarArea',
+      data: {datasets:[{data: Object.entries(this.majorCounts).map(x => x[1]) }],
+             labels: Object.entries(this.majorCounts).map(x => x[0]) },
+      options: {legend: {display: false}}
+    })
+
+    this.stateChart = new Chart('stateCanvas', {
+      type: 'pie',
+      data: {datasets:[{data: Object.entries(this.stateCounts).map(x => x[1]) }],
+             labels: Object.entries(this.stateCounts).map(x => x[0]) },
       options: {legend: {display: true}}
     })
 

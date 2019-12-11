@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 h2 {
   color: #444;
   font-weight: lighter;
@@ -26,16 +24,18 @@ button:hover {
   background-color: gray !important;
   background-color: #d83b01 !important;
   color: white;
-  padding: 4px;
   position: relative;
-  font-size: 12px;
+}
+.btn-light{
+  margin-right: 5px;
+  margin-bottom: 10px;
 }
 /*div {
   margin: 0.1em;
 }*/
 .selected {
   background-color: #cfd8dc !important;
-  background-color: #0078d7 !important;
+  background-color: #9365af !important;
   color: white;
 }
 .contacts {
@@ -84,7 +84,7 @@ button:hover {
   color: white;
   padding: 0.7em 0.7em 0 0.5em;
   background-color: #607d8b;
-  background-color: #0078d7;
+  background-color: #9365af;
   background-color: #86b7dd;
   line-height: 1em;
   position: relative;
@@ -96,7 +96,7 @@ button:hover {
   width: 1.2em;
 }
 .header-bar {
-  background-color: #0078d7;
+  background-color: #9365af;
   height: 4px;
   margin-top: 10px;
   margin-bottom: 10px;

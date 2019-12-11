@@ -1,21 +1,33 @@
 <div class="container">
     <h1>Your Organization's Statistics</h1>
-    <div class="card" style="width: 18rem;">
-        <canvas id="canvas">{{ chart }}</canvas>
-        <div class="card-body">
-            <p class="card-text">An example!</p>
-        </div>
-    </div>
-    <div class="card" style="width: 18rem;">
+    <div class="card" display="inline-block">
         <canvas id="canvas2">{{ attendanceChart }}</canvas>
         <div class="card-body">
-            <p class="card-text">How many members have attended meetings</p>
+            <p class="card-text">Meeting Attendance</p>
         </div>
     </div>
-    <div class="card" style="width: 18rem;">
+    <div class="card" display="inline-block">
         <canvas id="canvas3">{{ hsChart }}</canvas>
         <div class="card-body">
-            <p class="card-text">High Schools Represented.</p>
+            <p class="card-text">High Schools Represented</p>
+        </div>
+    </div>
+    <div class="card">
+        <canvas id="gradeCanvas">{{ gradeChart }}</canvas>
+        <div class="card-body">
+            <p class="card-text">Grades of Members Represented</p>
+        </div>
+    </div>
+    <div class="card">
+        <canvas id="majorCanvas">{{ majorChart }}</canvas>
+        <div class="card-body">
+            <p class="card-text">Majors of Members Represented</p>
+        </div>
+    </div>
+    <div class="card">
+        <canvas id="stateCanvas">{{ stateChart }}</canvas>
+        <div class="card-body">
+            <p class="card-text">States of Members Represented</p>
         </div>
     </div>
 </div>
