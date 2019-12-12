@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  OnInit
 } from '@angular/core';
 import {
   startOfDay,
@@ -23,6 +24,8 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { collapseAnimation } from 'angular-calendar';
+import { EventService } from '../event.service';
+import { Event } from '../event';
 
 const colors: any = {
   red: {
@@ -44,9 +47,10 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['/event-list.component.css'],
   templateUrl: '/event-list.component.html',
-  animations: [collapseAnimation]
+  animations: [collapseAnimation],
+  providers: [EventService]
 })
-export class EventListComponent {
+export class EventListComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -80,6 +84,8 @@ export class EventListComponent {
 
   refresh: Subject<any> = new Subject();
 
+  selectedEvent: Event;
+
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -112,7 +118,11 @@ export class EventListComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private eventService: EventService) {}
+
+  ngOnInit(){
+    this.selectedEvent= new  Event();
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -126,6 +136,10 @@ export class EventListComponent {
       }
       this.viewDate = date;
     }
+  }
+
+  onSelect(event: Event) {
+    this.selectedEvent = event;
   }
 
   eventTimesChanged({
@@ -151,8 +165,13 @@ export class EventListComponent {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
+
+  enableAddMode(){
+    this.selectedEvent = new Event();
+  }
+
   addEvent(): void {
-    this.events = [
+    /*this.events = [
       ...this.events,
       {
         title: 'New event',
@@ -165,7 +184,18 @@ export class EventListComponent {
           afterEnd: true
         }
       }
-    ];
+    ];*/
+    this.eventService.addEvent(this.selectedEvent).subscribe(event =>{
+      this.selectedEvent = null;
+      var newCalEvent: CalendarEvent;
+      newCalEvent.id = this.selectedEvent.uid;
+      newCalEvent.title = this.selectedEvent.title;
+      newCalEvent.start = this.selectedEvent.start;
+      newCalEvent.end = this.selectedEvent.end;
+      newCalEvent.actions = this.actions;
+      newCalEvent.color = colors.red;
+      this.events.push(newCalEvent);
+    });
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

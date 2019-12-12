@@ -5,11 +5,10 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema(
   {
     uid: { type: Number, required: true, unique: true },
-    attendees: Array,
-    date: Number,
-    description: String,
-    location: String,
-    title: String
+    title: String,
+    start: Date,
+    end: Date,
+    description: String
   },
   {
     collection: 'Events',

@@ -1,8 +1,7 @@
 export class Event {
     uid: number;
-    attendees: Array<string>;
-    date: number;
-    description: string;
-    location: string;
+    start: Date;
+    end: Date;
     title: string;
+    description: string;
 }

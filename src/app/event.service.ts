@@ -14,4 +14,13 @@ export class EventService {
   getEvents(){
     return this.http.get<Array<Event>>(`${api}/events`);
   }
+
+  deleteEvent(event: Event) {
+    return this.http.delete(`${api}/event/${event.uid}`);
+  }
+
+  addEvent(event: Event) {
+    return this.http.post<Event>(`${api}/event/`, event);
+  }
+
 }
