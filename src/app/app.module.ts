@@ -11,6 +11,12 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { StatsComponent } from './stats/stats.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EventListComponent } from './event-list/event-list.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
 
 @NgModule({
   declarations: [
@@ -19,7 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ContactListComponent,
     HeaderComponent,
     FooterComponent,
-    StatsComponent
+    StatsComponent,
+    EventListComponent
   ],
   imports: [
     NgbModule,
@@ -27,8 +34,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CommonModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    BrowserAnimationsModule
   ],
+  exports:[EventListComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

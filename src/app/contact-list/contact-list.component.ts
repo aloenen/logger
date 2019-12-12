@@ -97,7 +97,7 @@ export class ContactListComponent implements OnInit {
       populatedContact.meetings = meetings;
       populatedContact.major = major;
       this.contactService.addContact(populatedContact).subscribe(contact => this.contacts.push(contact));
-      this.contactAmount++;
+      this.contactAmount = this.contactAmount + 1;
     }
   }
 

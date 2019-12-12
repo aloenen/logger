@@ -1,12 +1,5 @@
 <div class="container">
   <h1>Your Contacts</h1>
-  <!--<ul class="list-group">
-    <li class="list-group-item" *ngFor="let contact of contacts" (click)="onSelect(contact)" [class.selected]="contact === selectedContact">
-      {{contact.uid}} | {{contact.name}} | {{contact.major}} | {{contact.grade}}
-      <button class="btn btn-danger" (click)="deleteContact(contact)">Delete</button>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>
-    </li>
-  </ul>-->
   <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()" margin-bottom="10px">Add New Contact</button>
   <button class="btn btn-light" (click)="populateContacts()">Add 50 Contacts</button>
   
