@@ -33,8 +33,30 @@ function checkServerError(res, error) {
   }
 }
 
+function deleteEvent(req, res) {
+  const uid = parseInt(req.params.uid, 10);
+  Event.findOneAndRemove({ uid: uid })
+    .then(event => {
+      if (!checkFound(res, event)) return;
+      res.status(200).json(event);
+      console.log('Event deleted successfully!');
+    })
+    .catch(error => {
+      if (checkServerError(res, error)) return;
+    });
+}
+  
+function checkFound(res, event) {
+  if (!event) {
+    res.status(404).send('Event not found.');
+    return;
+  }
+  return event;
+}
+
 
 module.exports = {
   getEvents,
-  postEvent
+  postEvent,
+  deleteEvent
 };

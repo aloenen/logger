@@ -107,7 +107,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add an Event</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -164,13 +164,13 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Description:</span>
                   </div>
-                <input [(ngModel)]="selectedEvent.Description" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+                <input [(ngModel)]="selectedEvent.description" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
             </div>
             </div>  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addEvent()">Save changes</button>
         </div>
       </div>
     </div>
@@ -188,7 +188,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let event of (events | paginate: { itemsPerPage:10, currentPage: p})" (click)="onSelect(event)" [class.selected]="event === selectedEvent">
+        <tr *ngFor="let event of (apiEvents | paginate: { itemsPerPage:10, currentPage: p})" (click)="onSelect(event)" [class.selected]="event === selectedEvent">
           <td> {{ event.uid }}   </td>
           <td> {{ event.title }}  </td>
           <td> {{ event.start }} </td>

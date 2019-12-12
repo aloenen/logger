@@ -1,7 +1,7 @@
 export class Event {
     uid: number;
+    title: string;
     start: Date;
     end: Date;
-    title: string;
     description: string;
 }

@@ -15,6 +15,10 @@ router.post('/contact', (req, res) => {
    contactService.postContact(req, res);
 });
 
+router.post('/event', (req, res) => {
+   eventService.postEvent(req, res);
+});
+
 router.put('/contact/:uid', (req, res) => {
    contactService.putContact(req, res);
  });
@@ -22,5 +26,9 @@ router.put('/contact/:uid', (req, res) => {
 router.delete('/contact/:uid', (req, res) => {
    contactService.deleteContact(req, res);
 });
+
+router.delete('/event/:uid', (req, res) => {
+   eventService.deleteEvent(req, res);
+})
 
 module.exports=router;

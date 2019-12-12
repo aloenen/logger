@@ -26,6 +26,7 @@ import {
 import { collapseAnimation } from 'angular-calendar';
 import { EventService } from '../event.service';
 import { Event } from '../event';
+import { CalendarEventActionsComponent } from 'angular-calendar/modules/common/calendar-event-actions.component';
 
 const colors: any = {
   red: {
@@ -86,8 +87,10 @@ export class EventListComponent implements OnInit {
 
   selectedEvent: Event;
 
+  apiEvents: any = [];
+
   events: CalendarEvent[] = [
-    {
+    /*{
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
       title: 'A 3 day event',
@@ -112,7 +115,7 @@ export class EventListComponent implements OnInit {
       title: 'A long event that spans 2 months',
       color: colors.blue,
       allDay: true
-    },
+    },*/
     
   ];
 
@@ -121,7 +124,30 @@ export class EventListComponent implements OnInit {
   constructor(private modal: NgbModal, private eventService: EventService) {}
 
   ngOnInit(){
-    this.selectedEvent= new  Event();
+    this.selectedEvent= new Event();
+    this.getEvents();
+  }
+
+  getEvents(){
+    return this.eventService.getEvents().subscribe(events => {
+      this.apiEvents = events;
+      for(let e of this.apiEvents){
+        this.events = [
+          ...this.events,
+          {
+            title: e.title,
+            start: new Date(e.start),
+            end: new Date(e.end),
+            color: colors.red,
+            draggable: true,
+            resizable: {
+              beforeStart: true,
+              afterEnd: true
+            }
+          }
+        ];
+      }
+    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -171,12 +197,12 @@ export class EventListComponent implements OnInit {
   }
 
   addEvent(): void {
-    /*this.events = [
+    this.events = [
       ...this.events,
       {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        title: this.selectedEvent.title,
+        start: this.selectedEvent.start,
+        end: this.selectedEvent.end,
         color: colors.red,
         draggable: true,
         resizable: {
@@ -184,22 +210,21 @@ export class EventListComponent implements OnInit {
           afterEnd: true
         }
       }
-    ];*/
+    ];
     this.eventService.addEvent(this.selectedEvent).subscribe(event =>{
+      this.apiEvents.push(event);
       this.selectedEvent = null;
-      var newCalEvent: CalendarEvent;
-      newCalEvent.id = this.selectedEvent.uid;
-      newCalEvent.title = this.selectedEvent.title;
-      newCalEvent.start = this.selectedEvent.start;
-      newCalEvent.end = this.selectedEvent.end;
-      newCalEvent.actions = this.actions;
-      newCalEvent.color = colors.red;
-      this.events.push(newCalEvent);
     });
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter(event => event !== eventToDelete);
+  deleteEvent(event: Event) {
+    this.eventService.deleteEvent(event).subscribe(res => {
+      this.events = this.events.filter(h => h !== event);
+      this.apiEvents = this.apiEvents.filter(h => h !== event);
+      if (this.selectedEvent === event) {
+        this.selectedEvent = null;
+      }
+    });
   }
 
   setView(view: CalendarView) {
