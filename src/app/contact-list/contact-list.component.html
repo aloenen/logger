@@ -1,7 +1,10 @@
 <div class="container">
+  <div class="jumbotron">
   <h1>Your Contacts</h1>
-  <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()" margin-bottom="10px">Add New Contact</button>
-  <button class="btn btn-light" (click)="populateContacts()">Add 50 Contacts</button>
+  <hr class="my-4">
+  <p class="lead">All current contacts in your organization. Add/Delete/Edit them at will.</p>
+  <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()" margin-bottom="10px">Add New Contact</button>
+  <button class="btn btn-dark"placement="right" ngbTooltip="For Demo Purposes only!"  (click)="populateContacts()" margin-right="10px">Add 50 Contacts</button>
    
   <table class="table table-hover">
     <thead>
@@ -20,11 +23,12 @@
         <td> {{ contact.major }} </td>
         <td> {{ contact.grade }} </td>
         <td><button class="btn btn-danger" (click)="deleteContact(contact)">Delete</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+          <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
       </tr>
     </tbody>
   </table>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
   
     
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,18 +103,18 @@
                     </div>
                     <select class="custom-select" id="majordd" [(ngModel)]="selectedContact.major">
                       <option selected>Choose...</option>
-                      <option value="Freshman">Computer Science</option>
-                      <option value="Sophomore">Computer Engineering</option>
-                      <option value="Junior">Electrical Engineering</option>
-                      <option value="Senior">Chemical Engineering</option>
-                      <option value="">Mechanical Engineering</option>
-                      <option value="">Industrial Engineering</option>
-                      <option value="">Biosystems Engineering</option>
-                      <option value="">Environmental Engineering</option>
-                      <option value="">Civil Engineering</option>
-                      <option value="">Architectural Engineering</option>
-                      <option value="">Construction Science and Management</option>
-                      <option value="">General Engineering</option>
+                      <option value="Computer Science">Computer Science</option>
+                      <option value="Computer Engineering">Computer Engineering</option>
+                      <option value="Electrical Engineering">Electrical Engineering</option>
+                      <option value="Chemical Engineering">Chemical Engineering</option>
+                      <option value="Mechanical Engineering">Mechanical Engineering</option>
+                      <option value="Industrial Engineering">Industrial Engineering</option>
+                      <option value="Biosystems Engineering">Biosystems Engineering</option>
+                      <option value="Environment Engineering">Environmental Engineering</option>
+                      <option value="Civil Engineering">Civil Engineering</option>
+                      <option value="Architectural Engineering">Architectural Engineering</option>
+                      <option value="Consutruction Science and Management">Construction Science and Management</option>
+                      <option value="General Engineering">General Engineering</option>
                     </select>  
                   </div>
                 </div> <!--End edit fields-->
@@ -118,7 +122,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="cancel()" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" (click)="save()" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-dark" (click)="save()" data-dismiss="modal">Save changes</button>
             </div>
           </div>
         </div>

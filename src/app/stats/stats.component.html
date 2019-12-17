@@ -1,33 +1,39 @@
 <div class="container">
-    <h1>Your Organization's Statistics</h1>
-    <div class="card" display="inline-block">
-        <canvas id="canvas2">{{ attendanceChart }}</canvas>
-        <div class="card-body">
-            <p class="card-text">Meeting Attendance</p>
+    <div class="jumbotron">
+        <h1>Your Organization's Statistics</h1>
+        <hr class="my-4">
+            <img src="../../assets/img/round-help-button.png" width="25px" height="25px" style="float:right;"placement="bottom" ngbTooltip="Custom Visuals made for your organization based off the data of your membership and events!">
+            <p class="lead">Analysis on your current membership.</p>
+        
+        <div class="card" display="inline-block">
+            <canvas id="canvas2">{{ attendanceChart }}</canvas>
+            <!--<div class="card-body">
+                <p class="card-text">Meeting Attendance</p>
+            </div>-->
         </div>
-    </div>
-    <div class="card" display="inline-block">
-        <canvas id="canvas3">{{ hsChart }}</canvas>
-        <div class="card-body">
-            <p class="card-text">High Schools Represented</p>
+        <div class="card" display="inline-block">
+            <canvas id="canvas3">{{ hsChart }}</canvas>
+            <!--<div class="card-body">
+                <p class="card-text">High Schools Represented</p>
+            </div>-->
         </div>
-    </div>
-    <div class="card">
-        <canvas id="gradeCanvas">{{ gradeChart }}</canvas>
-        <div class="card-body">
-            <p class="card-text">Grades of Members Represented</p>
+        <div class="card">
+            <canvas id="gradeCanvas">{{ gradeChart }}</canvas>
+            <!--<div class="card-body">
+                <p class="card-text">Grades of Members Represented</p>
+            </div>-->
         </div>
-    </div>
-    <div class="card">
-        <canvas id="majorCanvas">{{ majorChart }}</canvas>
-        <div class="card-body">
-            <p class="card-text">Majors of Members Represented</p>
+        <div class="card">
+            <canvas id="majorCanvas">{{ majorChart }}</canvas>
+            <!--<div class="card-body">
+                <p class="card-text">Majors of Members Represented</p>
+            </div>-->
         </div>
-    </div>
-    <div class="card">
-        <canvas id="stateCanvas">{{ stateChart }}</canvas>
-        <div class="card-body">
-            <p class="card-text">States of Members Represented</p>
+        <div class="card">
+            <canvas id="stateCanvas">{{ stateChart }}</canvas>
+            <!--<div class="card-body">
+                <p class="card-text">States of Members Represented</p>
+            </div>-->
         </div>
     </div>
 </div>

@@ -34,7 +34,7 @@ export class StatsComponent implements OnInit {
   ngOnInit() {
     this.getContacts();
 
-  }
+  } 
   
   getContacts() {
     return this.contactService.getContacts().subscribe(contacts => {
@@ -108,40 +108,50 @@ export class StatsComponent implements OnInit {
       type: 'pie',
       data:{ 
         datasets: [
-          { data: this.meetingCounts}
+          { data: this.meetingCounts,
+            backgroundColor: ["#2C2333","#3A2C56","#592D87","#9365AF"]}
         ],
         labels: ['Less than 6', 'Attended 7', 'Attended 8', 'Attended 9']
       },
-      options: {legend: {display: false }}
+      options: {legend: {display: false },
+                title: {display: true, text: 'Meetings Attended'}}
     })
 
     this.hsChart = new Chart('canvas3',{
       type: 'bar',
-      data: {datasets:[{data: Object.entries(this.highSchoolCounts).map(x => x[1]) }],
+      data: {datasets:[{data: Object.entries(this.highSchoolCounts).map(x => x[1]),
+                        backgroundColor: ["#2C2333","#3A2C56","#592D87","#9365AF","#DCD6DA","#2C2333","#3A2C56","#592D87","#9365AF"] }],
              labels: Object.entries(this.highSchoolCounts).map(x => x[0])},
-      options: {legend: {display: true},
-                scales: {yAxes:[{ticks:{beginAtZero: true}}]}}
+      options: {legend: {display: false},
+                scales: {yAxes:[{ticks:{beginAtZero: true}}]},
+                title: {display: true, text: 'High Schools Represented'}}
     })
 
     this.gradeChart = new Chart('gradeCanvas', {
       type: 'doughnut',
-      data: {datasets:[{data: Object.entries(this.gradeCounts).map(x => x[1]) }],
+      data: {datasets:[{data: Object.entries(this.gradeCounts).map(x => x[1]),
+                        backgroundColor: ["#2C2333","#3A2C56","#592D87","#9365AF"] }],
              labels: Object.entries(this.gradeCounts).map(x => x[0]) },
-      options: {legend: {display: true}}
+      options: {legend: {display: true},
+                title: {display: true, text: 'Grade Levels Represented'}}
     })
 
     this.majorChart = new Chart('majorCanvas', {
-      type: 'polarArea',
-      data: {datasets:[{data: Object.entries(this.majorCounts).map(x => x[1]) }],
+      type: 'pie',
+      data: {datasets:[{data: Object.entries(this.majorCounts).map(x => x[1]),
+                        backgroundColor: ["#2C2333","#3A2C56","#592D87","#9365AF","#DCD6DA","#2C2333","#3A2C56","#592D87","#9365AF","DCD6DA","#2C2333"] }],
              labels: Object.entries(this.majorCounts).map(x => x[0]) },
-      options: {legend: {display: false}}
+      options: {legend: {display: false},
+                title: {display: true, text: 'Majors Represented'}}
     })
 
     this.stateChart = new Chart('stateCanvas', {
       type: 'pie',
-      data: {datasets:[{data: Object.entries(this.stateCounts).map(x => x[1]) }],
+      data: {datasets:[{data: Object.entries(this.stateCounts).map(x => x[1]),
+                        backgroundColor: ["#2C2333","#3A2C56","#592D87","#9365AF","#DCD6DA","#2C2333","#3A2C56","#592D87","#9365AF","DCD6DA","#2C2333","#3A2C56"] }],
              labels: Object.entries(this.stateCounts).map(x => x[0]) },
-      options: {legend: {display: true}}
+      options: {legend: {display: true},
+                title: {display: true, text: 'States Represented'}}
     })
 
   }

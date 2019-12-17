@@ -5,20 +5,15 @@ h2 {
 body {
   margin: 2em;
 }
-body, input[text], button {
+body, input[text] {
   color: #888;
 }
-button {
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  cursor: hand;
+
+.btn-dark{
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
-button:hover {
-  background-color: #cfd8dc;
-}
+
 .btn-danger {
   float: right;
   background-color: gray !important;
@@ -121,5 +116,6 @@ label.value {
 }
 
 .container{
-  margin-top:70px;
+  margin-top:60px;
+  text-align: center;
 }

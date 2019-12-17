@@ -1,10 +1,15 @@
 <div class="container">
+  <div class="jumbotron">
+    <h1>Events</h1>
+    <hr class="my-4">
+    <p>Manage Events and see upcoming and current events happening.</p>
+    <a  class="btn btn-dark" href="event-list#eventslisting">See All Events</a>
     <link href="https://unpkg.com/angular-calendar@0.20.0/dist/css/angular-calendar.css" rel="stylesheet">
     <link href="https://unpkg.com/flatpickr@4.6.3/dist/flatpickr.css" rel="stylesheet">
     <div class="row text-center">
             <div class="col-md-4">
             <div class="btn-group">
-                <div class="btn btn-primary"
+                <div class="btn btn-dark"
                 mwlCalendarPreviousView
                 [view]="view"
                 [(viewDate)]="viewDate"
@@ -13,14 +18,14 @@
                 Previous
                 </div>
                 <div
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-dark"
                 mwlCalendarToday
                 [(viewDate)]="viewDate"
                 >
                 Today
                 </div>
                 <div
-                class="btn btn-primary"
+                class="btn btn-dark"
                 mwlCalendarNextView
                 [view]="view"
                 [(viewDate)]="viewDate"
@@ -36,21 +41,21 @@
             <div class="col-md-4">
             <div class="btn-group">
                 <div
-                class="btn btn-primary"
+                class="btn btn-dark"
                 (click)="setView(CalendarView.Month)"
                 [class.active]="view === CalendarView.Month"
                 >
                 Month
                 </div>
                 <div
-                class="btn btn-primary"
+                class="btn btn-dark"
                 (click)="setView(CalendarView.Week)"
                 [class.active]="view === CalendarView.Week"
                 >
                 Week
                 </div>
                 <div
-                class="btn btn-primary"
+                class="btn btn-dark"
                 (click)="setView(CalendarView.Day)"
                 [class.active]="view === CalendarView.Day"
                 >
@@ -91,13 +96,13 @@
             >
             </mwl-calendar-day-view>
         </div>
-        
-        <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
         <br /><br /><br />
 
+<section id="eventslisting">
 <h3>
   Edit events
-  <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()"> 
+  <button class="btn btn-dark pull-right" data-toggle="modal" data-target="#exampleModal" (click)="enableAddMode()"> 
     Add new
   </button>
   <div class="clearfix"></div>
@@ -164,7 +169,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Description:</span>
                   </div>
-                <input [(ngModel)]="selectedEvent.description" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+                <input [(ngModel)]="selectedEvent.description" type="text" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
             </div>
             </div>  
         </div>
@@ -200,7 +205,7 @@
       </tbody>
     </table>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
+</section>
 <!--<div class="table-responsive">
   <table class="table table-bordered">
     <thead>
@@ -260,6 +265,6 @@
     </tbody>
   </table>
 </div>-->
-   
+   </div>
 </div>
       

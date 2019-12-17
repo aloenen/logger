@@ -24,7 +24,7 @@ export class ContactListComponent implements OnInit {
   cities = ['Springfield','Branson','Manhattan','Chesterfield','Raytown','Destin','Lake City','Park City','Townville','Independence','Liberty','Lexington'];
   grades = ['Freshman','Sophomore','Junior','Senior'];
   descriptions = ['Nice','Smart','Personable','Funny','Good','Likable','Friendly'];
-  contactAmount = 0;
+  contactAmount = 1;
 
   ngOnInit() {
    this.getContacts();
@@ -97,7 +97,7 @@ export class ContactListComponent implements OnInit {
       populatedContact.meetings = meetings;
       populatedContact.major = major;
       this.contactService.addContact(populatedContact).subscribe(contact => this.contacts.push(contact));
-      this.contactAmount = this.contactAmount + 1;
+      this.contactAmount = this.contactAmount++;
     }
   }
 
