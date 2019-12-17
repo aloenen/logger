@@ -7,8 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StatsComponent } from './stats/stats.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EventListComponent } from './event-list/event-list.component';
@@ -16,7 +16,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
     HeaderComponent,
     FooterComponent,
     StatsComponent,
-    EventListComponent
+    EventListComponent,
   ],
   imports: [
     NgbModule,
@@ -38,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
     CommonModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   exports:[EventListComponent],
   providers: [],

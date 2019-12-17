@@ -6,11 +6,11 @@ import { StatsComponent } from './stats/stats.component';
 import { EventListComponent } from './event-list/event-list.component';
 
 const routes: Routes = [
-  {path:  "", pathMatch:  "full",redirectTo:  "home"},
+  {path:  "", component: HomeComponent},
   {path: "home", component: HomeComponent},
   {path: "contact-list", component: ContactListComponent},
   {path: "stats", component: StatsComponent},
-  {path: "event-list", component: EventListComponent}  
+  {path: "event-list", component: EventListComponent} 
 ];
 
 @NgModule({
